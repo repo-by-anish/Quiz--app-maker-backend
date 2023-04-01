@@ -1,0 +1,9 @@
+20230401	17:42:58	250f53ec-54ca-4b19-be53-26e0dda286b7	TypeError	Cannot destructure property 'quizId' of 'req.body' as it is undefined.	POST,	/quiz	undefined
+20230401	17:55:58	d97194b7-684f-4efc-abd3-04c2fdb822b7	TypeError	Cannot destructure property 'quizId' of 'req.body' as it is undefined.	POST,	/quiz	undefined
+20230401	17:58:18	a875544e-3078-4d29-85a7-aced0c2589f7	TypeError	Cannot destructure property 'quizId' of 'req.body' as it is undefined.	POST,	/quiz	undefined
+20230401	17:58:43	f0bf21c2-615f-4e04-9248-fafc39ad3114	TypeError	Cannot destructure property 'quizId' of 'req.body' as it is undefined.	POST,	/quiz	undefined
+20230401	18:00:59	2eba55ae-05a4-4ef4-87a3-9d057f0752ce	TypeError	Cannot destructure property 'quizId' of 'req.body' as it is undefined.	POST,	/quiz	undefined
+20230401	18:03:27	06ac9eaa-737d-4843-9c2d-f8cdc5ecb4e2	TypeError	Cannot destructure property 'quizId' of 'req.body' as it is undefined.	POST,	/quiz	undefined
+20230401	23:49:54	000e9466-700f-4ef9-8690-ec0c1f6117fc	ValidationError	Quiz validation failed: quizGrade: Path `quizGrade` is required.	POST,	/quiz	undefined
+20230401	23:53:12	e705ba2b-e782-47e9-99eb-c7e98b696bbf	SyntaxError	Unexpected token } in JSON at position 27	DELETE,	/quiz	undefined
+20230401	23:53:25	96eedfa3-ecbc-4d23-9469-d9e20428fa1b	ObjectParameterError	Parameter "filter" to findOne() must be an object, got 0987654321	DELETE,	/quiz	undefined
