@@ -8,7 +8,7 @@ const answereRoutes=require("./routes/answereRoute")
 const PORT=process.env.PORT||3500;
 const app=express();
 const dbConn=require("./config/dbConn");
-const corsOptions = require("./config/corsOptions");
+// const corsOptions = require("./config/corsOptions");
 
 app.use(express.static(path.join(__dirname,"./public")));
 app.use(express.static(path.join(__dirname,"./client/build")));
@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname,"./client/build")));
 dbConn();
 
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use(express.json())
 
