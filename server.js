@@ -1,8 +1,6 @@
 require("dotenv").config();
 const express=require("express");
-const {logger,logEvent} = require('./middleware/logger')
 const cors=require("cors");
-const erroHandler = require('./middleware/errorHandler');
 const mongoose=require("mongoose");
 const path = require("path");
 const quizRoutes=require("./routes/quizRoutes");
@@ -16,7 +14,6 @@ app.use(express.static(path.join(__dirname,"./public")));
 
 dbConn();
 
-app.use(logger);
 
 app.use(cors(corsOptions))
 
@@ -39,7 +36,6 @@ app.all("*",(req,res)=>{
     }
 })
 
-app.use(erroHandler)
 
 mongoose.connection.once("open",()=>{
     console.log("Connected to DB");
@@ -48,6 +44,5 @@ mongoose.connection.once("open",()=>{
 
 mongoose.connection.on("error",err=>{
     console.log(err);
-    logEvent(`${err.no}:${err.code}\t${err.syscall}\t${err.hostname}`,"mongoErrLog.log");
 })
 
