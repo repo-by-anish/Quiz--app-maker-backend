@@ -6,5 +6,7 @@ const allowedOrigins=[
     "http://localhost:3500",
     "",
     "https://create-quiz.cyclic",
+    "/answere",
+    "/quiz",
 ]
 module.exports=allowedOrigins;
