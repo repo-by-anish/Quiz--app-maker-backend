@@ -12,12 +12,17 @@ const getAllquizes = asyncHandeler(async (req, res) => {
 })
 
 const createNewQuiz = asyncHandeler(async (req, res) => {
-    const { quizId, quizName, quizDesc, quizGrade, quizDuration, quizQnData } = req.body;
-    if (!quizId && !quizName && !quizDesc && !quizGrade && !quizDuration && !quizQnData) {
+    const { quizId, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas } = req.body;
+    if (!quizId && !quizName && !quizDesc && !quizGrade && !quizDuration && !quizQnDatas) {
         return res.status(400).json({ message: "All feild are required" });
     }
 
-    const quizObject = { quizId, quizName, quizDesc, quizGrade, quizDuration, quizQnData };
+    const duplicateQuiz=await Quiz.findOne({quizId}).lean().exec()
+    if (duplicateQuiz) {
+        return res.status(409).json({message:"A Quiz already exist with same Id"});
+    }
+
+    const quizObject = { quizId, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas };
     const quiz = await Quiz.create(quizObject);
     if (quiz) {
         res.status(200).json({ message: "new quiz created" });
@@ -32,7 +37,7 @@ const deleteQuiz = asyncHandeler(async (req, res) => {
     if (!quizId) {
         res.status(400).json({ message: "Id is Required" });
     }
-    const quiz = await Quiz.findOne({ quizId: quizId }).exec();
+    const quiz = await Quiz.findOne({quizId }).exec();
 
     if (!quiz) {
         res.status(400).json({ message: "No Quiz Found" });
@@ -46,8 +51,8 @@ const deleteQuiz = asyncHandeler(async (req, res) => {
 
 
 const updateQuiz = asyncHandeler(async (req, res) => {
-    const { id, quizName, quizDesc, quizGrade, quizDuration, quizQnData } = req.body;
-    if (!id&&!quizName && !quizDesc && !quizGrade && !quizDuration && !Array.isArray(quizQnData)) {
+    const { id, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas } = req.body;
+    if (!id&&!quizName && !quizDesc && !quizGrade && !quizDuration && !Array.isArray(quizQnDatas)) {
         return res.status(400).json({ message: "All feild are required" });
     }
 
@@ -60,7 +65,7 @@ const updateQuiz = asyncHandeler(async (req, res) => {
     quiz.quizDesc = quizDesc;
     quiz.quizGrade = quizGrade;
     quiz.quizDuration = quizDuration;
-    quiz.quizQnData = quizQnData;
+    quiz.quizQnDatas = quizQnDatas;
 
     const result = await quiz.save();
     res.json({ message: "Quiz Updated" });

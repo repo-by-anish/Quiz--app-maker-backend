@@ -21,9 +21,13 @@ const quizSchema=new mongoose.Schema({
         type:Number,
         required:true
     },
-    quizQnData:{
-        type:[],
+    quizQnDatas:{
+        type:Array,
         required:true
+    },
+    date:{
+        type:Date,
+        default:new Date().getUTCDate()
     }
 })
 const Quiz=mongoose.model("Quiz",quizSchema);
