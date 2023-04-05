@@ -1,4 +1,4 @@
 const allowedOrigins=[
-    "http://localhost:3000",
+    "https://create-quiz.cyclic.app/"
 ]
 module.exports=allowedOrigins;
