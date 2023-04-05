@@ -11,6 +11,7 @@ const dbConn=require("./config/dbConn");
 const corsOptions = require("./config/corsOptions");
 
 app.use(express.static(path.join(__dirname,"./public")));
+app.use(express.static(path.join(__dirname,"./client/build")));
 
 dbConn();
 
