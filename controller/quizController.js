@@ -51,8 +51,8 @@ const deleteQuiz = asyncHandeler(async (req, res) => {
 
 
 const updateQuiz = asyncHandeler(async (req, res) => {
-    const { id, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas } = req.body;
-    if (!id&&!quizName && !quizDesc && !quizGrade && !quizDuration && !Array.isArray(quizQnDatas)) {
+    const { id, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas,updateDate } = req.body;
+    if (!id&&!quizName && !quizDesc && !quizGrade && !quizDuration && !Array.isArray(quizQnDatas)&&updateDate) {
         return res.status(400).json({ message: "All feild are required" });
     }
 
@@ -66,9 +66,12 @@ const updateQuiz = asyncHandeler(async (req, res) => {
     quiz.quizGrade = quizGrade;
     quiz.quizDuration = quizDuration;
     quiz.quizQnDatas = quizQnDatas;
+    quiz.updateDate=updateDate;
 
     const result = await quiz.save();
-    res.json({ message: "Quiz Updated" });
+    if(result){
+       return res.json({ message: "Quiz Updated" });
+    }
 })
 
 module.exports = {

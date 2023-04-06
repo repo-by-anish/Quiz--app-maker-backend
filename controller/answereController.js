@@ -12,7 +12,6 @@ if(!answeres?.length){
 
 const createAnswere=asyncHandler(async (req,res)=>{
     const {studentName,studentEmail,studentSection,studentRollno,answeres,quizId}=req.body;
-    console.log(req.body);
     if (!studentName&&!studentEmail&&!studentRollno&&!studentSection&&!quizId) {
         return res.status(400).json({message:"All feild are required"});
     }

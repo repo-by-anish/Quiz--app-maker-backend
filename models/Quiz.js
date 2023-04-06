@@ -27,7 +27,11 @@ const quizSchema=new mongoose.Schema({
     },
     date:{
         type:Date,
-        default:new Date().getUTCDate()
+        default:new Date().toLocaleDateString()
+    },
+    updateDate:{
+        type:Date,
+        default:new Date().toLocaleDateString()
     }
 })
 const Quiz=mongoose.model("Quiz",quizSchema);
