@@ -1,14 +1,6 @@
 const Answere=require("../models/Answere");
 const asyncHandler=require("express-async-handler");
 
-const getAllAnsweres=asyncHandler(async (req,res)=>{
-const answeres=await Answere.find().lean();
-if(!answeres?.length){
-    res.status(400).json({message:"No Answeres Found"});
-}else{
-    res.json(answeres)
-}
-})
 
 const createAnswere=asyncHandler(async (req,res)=>{
     const {studentName,studentEmail,studentSection,studentRollno,answeres,quizId}=req.body;
@@ -42,7 +34,6 @@ const updateAnswere=asyncHandler(async (req,res)=>{
 })
 
 module.exports={
-    getAllAnsweres,
     createAnswere,
     updateAnswere
 }
