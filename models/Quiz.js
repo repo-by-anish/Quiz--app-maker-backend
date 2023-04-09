@@ -21,6 +21,10 @@ const quizSchema=new mongoose.Schema({
         type:Number,
         required:true
     },
+    answeres:{
+        type:[],
+        required:true
+    },
     quizQnDatas:{
         type:Array,
         required:true

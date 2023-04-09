@@ -28,6 +28,10 @@ const answereSchema=new mongoose.Schema({
     answeres:{
         type:[],
         required:true
+    },
+    score:{
+        type:Number,
+        required:true
     }
 })
 

@@ -12,8 +12,8 @@ const getAllquizes = asyncHandeler(async (req, res) => {
 })
 
 const createNewQuiz = asyncHandeler(async (req, res) => {
-    const { quizId, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas } = req.body;
-    if (!quizId && !quizName && !quizDesc && !quizGrade && !quizDuration && !quizQnDatas) {
+    const { quizId, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas,answeres } = req.body;
+    if (!quizId && !quizName && !quizDesc && !quizGrade && !quizDuration && !Array.isArray(quizQnDatas)&&updateDate&&!Array.isArray(result)) {
         return res.status(400).json({ message: "All feild are required" });
     }
 
@@ -22,7 +22,7 @@ const createNewQuiz = asyncHandeler(async (req, res) => {
         return res.status(409).json({message:"A Quiz already exist with same Id"});
     }
 
-    const quizObject = { quizId, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas };
+    const quizObject = { quizId, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas,answeres };
     const quiz = await Quiz.create(quizObject);
     if (quiz) {
         res.status(200).json({ message: "new quiz created" });
@@ -51,8 +51,8 @@ const deleteQuiz = asyncHandeler(async (req, res) => {
 
 
 const updateQuiz = asyncHandeler(async (req, res) => {
-    const { id, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas,updateDate } = req.body;
-    if (!id&&!quizName && !quizDesc && !quizGrade && !quizDuration && !Array.isArray(quizQnDatas)&&updateDate) {
+    const { id, quizName, quizDesc, quizGrade, quizDuration, quizQnDatas,updateDate,answeres } = req.body;
+    if (!id&&!quizName && !quizDesc && !quizGrade && !quizDuration && !Array.isArray(quizQnDatas)&&updateDate&&!Array.isArray(answeres)) {
         return res.status(400).json({ message: "All feild are required" });
     }
 
@@ -67,6 +67,7 @@ const updateQuiz = asyncHandeler(async (req, res) => {
     quiz.quizDuration = quizDuration;
     quiz.quizQnDatas = quizQnDatas;
     quiz.updateDate=updateDate;
+    quiz.answeres=answeres;
 
     const result = await quiz.save();
     if(result){
