@@ -19,7 +19,7 @@ const answereSchema=new mongoose.Schema({
     },
     submittedTime:{
         type:Date,
-        default:new Date()
+        default:new Date().toLocaleDateString()
     },
     quizId:{
         type:mongoose.Schema.Types.ObjectId,
