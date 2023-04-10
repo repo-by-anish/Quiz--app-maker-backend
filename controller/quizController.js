@@ -44,8 +44,7 @@ const deleteQuiz = asyncHandeler(async (req, res) => {
     }
 
     const result = await quiz.deleteOne();
-    const reply = `Quiz ${result.quizName} with id: ${result.quizId} is deleted`;
-    res.status(200).json({ message: reply });
+    res.status(200).json({ message: "Quiz Deleted." });
 
 })
 
